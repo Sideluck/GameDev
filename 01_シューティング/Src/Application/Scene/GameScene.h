@@ -24,5 +24,6 @@ private:
 	//std::shared_ptr<BaseObject> m_player;	//スマートポインタ
 	//std::shared_ptr<BaseObject> m_enemy;	
 
-	//全オブジェクトを
+	//全オブジェクトをのリストを可変長配列化
+	std::vector<std::shared_ptr<BaseObject>> m_objList;
 };

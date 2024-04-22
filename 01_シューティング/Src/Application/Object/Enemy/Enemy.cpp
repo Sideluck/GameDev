@@ -3,7 +3,7 @@
 void Enemy::Init()
 {
 	m_tex.Load("Asset/Textures/enemy.png");
-	m_pos = { 0, 200, 0 };
+	m_pos = { 0, 0, 0 };
 	m_mat = Math::Matrix::Identity;
 }
 
