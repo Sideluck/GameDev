@@ -3,7 +3,8 @@
 void Enemy::Init()
 {
 	m_tex.Load("Asset/Textures/enemy.png");
-	m_pos = { 0, 0, 0 };
+	m_pos = {};
+	m_movePow = { 0.0f, -2.0f, 0.0f};
 	m_mat = Math::Matrix::Identity;
 }
 
@@ -18,6 +19,13 @@ void Enemy::Draw()
 
 void Enemy::Update()
 {
+	m_pos += m_movePow;
+
+	if (m_pos.y < -360 - 32)
+	{
+		m_pos.y = 360 + 32;
+	}
+
 	Math::Matrix transMat;
 	transMat = Math::Matrix::CreateTranslation(m_pos);
 	m_mat = transMat;

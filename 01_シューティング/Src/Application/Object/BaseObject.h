@@ -20,5 +20,5 @@ protected:
 	Math::Matrix m_mat;
 	Math::Vector3 m_pos;
 
-	bool m_aliveFlg = false;
+	bool m_aliveFlg = true;
 };
