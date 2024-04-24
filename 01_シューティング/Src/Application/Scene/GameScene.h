@@ -14,6 +14,8 @@ public:
 	void Draw();	    
 	void init();		
 
+	std::vector<std::shared_ptr<BaseObject>>GetObjList() { return m_objList; }
+
 private:
 
 	void Release();  //外部に呼ばれたくないのでprivate

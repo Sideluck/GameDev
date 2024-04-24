@@ -1,5 +1,7 @@
 ﻿#include "Player.h"
 
+#include "../../Scene/GameScene.h"
+
 void Player::Init()
 {
 	m_tex.Load("Asset/Textures/Player.png");
@@ -39,6 +41,29 @@ void Player::Update()
 	if (GetAsyncKeyState('D') & 0x8000 || GetAsyncKeyState(VK_RIGHT) & 0x8000)
 	{
 		m_pos.x += 5.0f;
+	}
+
+	//プレイヤーと敵の当たり判定
+	for (auto&obj:m_owner->GetObjList())
+	{
+		//自分自身とは当たり判定をしない
+		if (obj->GetObjType()==ObjectType::Player)
+		{
+			continue;
+		}
+		//敵なら当たり判定を行う
+		if (obj->GetObjType()==ObjectType::Enemy)
+		{
+			//対象座標-自身の座標＝対象へのベクトル
+			Math::Vector3 v;
+			v = obj->GetPos() - m_pos;
+
+			//球判定...ベクトルの長さで判定
+			if (v.Length() < 64.0f)
+			{
+				obj->OnHit();
+			}
+		}
 	}
 }
 

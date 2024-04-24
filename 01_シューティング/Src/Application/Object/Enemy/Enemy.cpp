@@ -31,6 +31,11 @@ void Enemy::Update()
 	m_mat = transMat;
 }
 
+void Enemy::OnHit()
+{
+	m_aliveFlg = false;
+}
+
 void Enemy::Release()
 {
 }

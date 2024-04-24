@@ -20,3 +20,8 @@ void BaseObject::SetTexture(std::string _fileName)
 {
 	m_tex.Load(_fileName);
 }
+
+void BaseObject::OnHit()
+{
+
+}
