@@ -16,6 +16,13 @@ public:
 
 	std::vector<std::shared_ptr<BaseObject>>GetObjList() { return m_objList; }
 
+	//オブジェクトリストにオブジェクトを追加
+	void AddObject(std::shared_ptr<BaseObject> _obj)
+	{
+		//リストの末尾に引数で渡された1要素を追加
+		m_objList.push_back(_obj);
+	}
+
 private:
 
 	void Release();  //外部に呼ばれたくないのでprivate

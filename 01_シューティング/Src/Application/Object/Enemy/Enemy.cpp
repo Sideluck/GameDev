@@ -5,6 +5,7 @@ void Enemy::Init()
 	m_tex.Load("Asset/Textures/enemy.png");
 	m_pos = {};
 	m_movePow = { 0.0f, -2.0f, 0.0f};
+	m_objType = ObjectType::Enemy;
 	m_mat = Math::Matrix::Identity;
 }
 

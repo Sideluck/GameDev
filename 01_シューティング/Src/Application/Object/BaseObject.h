@@ -25,6 +25,8 @@ public:
 
 	Math::Vector3 GetPos() { return m_pos; }
 
+	bool GetAliveFlg() { return m_aliveFlg; }
+
 	//Hit時の処理
 	virtual void OnHit();
 

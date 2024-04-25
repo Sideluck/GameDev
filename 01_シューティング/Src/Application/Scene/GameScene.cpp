@@ -5,6 +5,33 @@
 
 void GameScene::PreUpdate()
 {
+	//オブジェクトリストの整理をしておく
+
+	//イテレーターとは...コンテナクラス用のポインタ(みたいなやつ)
+	//コンテナを先頭から末尾までたどる際に仕様
+
+	//イテレーター作成 べた書き
+	//std::vector<std::shared_ptr<BaseObject>>::iterator it;
+	//it = m_objList.begin();
+
+	//イテレーター作成 autoVer.
+	auto it = m_objList.begin();
+
+	while (it != m_objList.end())	//end()は最後の要素の1個後ろを返す
+	{
+		//オブジェクトの有効チェック
+		if ((*it)->GetAliveFlg() == false)
+		{
+			it = m_objList.erase(it);//無効なオブジェクトをリストから削除
+		}
+		else
+		{
+			it++;	//次の要素へイテレーターをすすめる
+		}
+	}
+
+
+	//↑の後には有効なオブジェクトだけのリストになっている
 }
 
 void GameScene::Update()

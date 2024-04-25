@@ -6,6 +6,7 @@ void Player::Init()
 {
 	m_tex.Load("Asset/Textures/Player.png");
 	m_pos = {};							//0,0で初期化
+	m_objType = ObjectType::Player;		//種類はプレイヤー
 	m_mat = Math::Matrix::Identity;		//単位行列で初期化
 
 	//単位行列・・・拡大率全て1.0，他の値は0
