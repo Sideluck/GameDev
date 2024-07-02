@@ -1,13 +1,23 @@
 ﻿#include "Player.h"
-
 #include "../../Scene/GameScene.h"
+#include "../Bullet/Bullet.h"
 
 void Player::Init()
 {
+	std::shared_ptr<Bullet>bullet;
+	for (int i = 0; i < 10; i++)
+	{
+		bullet = std::make_shared<Bullet>();
+		bullet->Init();
+	
+		bullet->SetPos(m_pos);
+	}
+
 	m_tex.Load("Asset/Textures/Player.png");
 	m_pos = {};							//0,0で初期化
 	m_objType = ObjectType::Player;		//種類はプレイヤー
 	m_mat = Math::Matrix::Identity;		//単位行列で初期化
+
 
 	//単位行列・・・拡大率全て1.0，他の値は0
 }
@@ -23,10 +33,6 @@ void Player::Draw()
 
 void Player::Update()
 {
-	Math::Matrix transMat;
-	transMat = Math::Matrix::CreateTranslation(m_pos);
-	m_mat = transMat;
-
 	if (GetAsyncKeyState('W') & 0x8000|| GetAsyncKeyState(VK_UP) & 0x8000)
 	{
 		m_pos.y += 5.0f;
@@ -42,6 +48,18 @@ void Player::Update()
 	if (GetAsyncKeyState('D') & 0x8000 || GetAsyncKeyState(VK_RIGHT) & 0x8000)
 	{
 		m_pos.x += 5.0f;
+	}
+
+	if (GetAsyncKeyState(VK_SPACE) & 0x8000)
+	{
+		std::shared_ptr<Bullet>bullet;
+		bullet = std::make_shared<Bullet>();
+		bullet->Init();							//初期化
+					//発射Ⅰ
+		bullet->SetPos(m_pos);					//オーナー
+		bullet->SetMovePow({ 0, 10.0f, 0 });	
+
+		m_owner->AddObject(bullet);
 	}
 
 	//プレイヤーと敵の当たり判定
@@ -63,9 +81,14 @@ void Player::Update()
 			if (v.Length() < 64.0f)
 			{
 				obj->OnHit();
+				break;
 			}
 		}
 	}
+
+	Math::Matrix transMat;
+	transMat = Math::Matrix::CreateTranslation(m_pos);
+	m_mat = transMat;
 }
 
 void Player::Release()

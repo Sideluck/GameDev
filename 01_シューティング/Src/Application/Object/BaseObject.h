@@ -11,6 +11,7 @@ public:
 	{
 		Player,
 		Enemy,
+		Bullet
 	};
 
 	//仮想関数
